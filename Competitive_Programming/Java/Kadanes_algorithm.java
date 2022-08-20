@@ -1,24 +1,32 @@
 import java.util.*;
 
 public class Kadanes_algorithm {
-    public int maximum_sum_subarray(int arr[], int n) {
-        int max_so_far = arr[0];
-        int max_ending_here = arr[0];
-        for (int i = 1; i < n; i++) {
-            max_ending_here = max_ending_here + arr[i];
-            if (max_ending_here < 0)
-                max_ending_here = 0;
-            if (max_ending_here > max_so_far)
-                max_so_far = max_ending_here;
+    public int max(int cs, int ms) {
+        if (cs > ms) {
+            return cs;
+        } else {
+            return ms;
         }
-        return max_so_far;
+    }
+
+    public int maximum_sum_subarray(int arr[], int n) {
+        int cs = 0;
+        int ms = 0;
+        for (int i = 0; i < n; i++) {
+            cs = cs + arr[i];
+            ms = max(cs, ms);
+            if (cs < 0) {
+                cs = 0;
+            }
+        }
+        return ms;
     }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int arr[] = { -2, -3, 4, -1, -2, 1, 5, -3 };
+        int[] arr = { -2, -3, 4, -1, -2, 1, 5, -3 };
         // int arr[] = {-2, -3, 4, -1, -2, 1, 5, -3};
         // int arr[] = {1,2,3,4,-10,9,8,-90};
         // int arr[] = {-1,-2,-3,-4,-10,-9,-8,-90};
