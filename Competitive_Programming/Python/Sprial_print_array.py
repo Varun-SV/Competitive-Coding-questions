@@ -18,7 +18,6 @@ def spiralprint(arr,n,m):
             if startrow == endrow:
                 break
             print(arr[endrow][col],end=" ")
-        
         #startcol
         for row in range(endrow,startrow,-1):
             if startcol == endcol:
